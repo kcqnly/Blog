@@ -1,0 +1,8 @@
+.DS_Store
+node_modules/
+yarn.lock
+yarn.error
+
+# build directory
+/public/
+/public/.DS_Store

@@ -1,0 +1,17 @@
+{
+  "name": "blog",
+  "version": "1.0.0",
+  "author": "kcqnly",
+  "repository": "https://github.com/kcqnly/Blog",
+  "license": "MIT",
+  "scripts": {
+    "dev": "vuepress dev . --open --host \"localhost\"",
+    "build": "vuepress build ."
+  },
+  "devDependencies": {
+    "@maginapp/vuepress-plugin-katex": "^1.0.11",
+    "vuepress": "1.8.2",
+    "vuepress-theme-reco": "1.6.6"
+  },
+  "description": "blog"
+}
