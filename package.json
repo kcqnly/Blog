@@ -11,7 +11,8 @@
   "devDependencies": {
     "@maginapp/vuepress-plugin-katex": "^1.0.11",
     "vuepress": "1.8.2",
-    "vuepress-theme-reco": "1.6.6"
+    "vuepress-theme-reco": "1.6.6",
+    "@vuepress-reco/vuepress-plugin-bgm-player": "^1.1.3"
   },
   "description": "blog"
 }

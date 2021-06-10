@@ -121,6 +121,101 @@ fun main(args: Array<String>) {
 
 ### 类与对象
 
+```kotlin
+class Person {
+  var name = ""
+  var age = 0
+  
+  fun eat() {
+    println(name + " is eating. He is " + age + " years old.")
+  }
+}
+
+fun main() {
+  val p = Person()
+  p.name = "Jack"
+  p.age = 19
+  p.eat()
+}
+```
+
+### 继承
+
+默认所有的非抽象类都是不可继承的。抽象类本身是无法创建实例的，一定要子类去继承它才能创建实例，因此抽象类必须被继承才行，不然就没有意义。通过给Person添加`open`关键词，才可以被继承。
+
+```kotlin
+open class Person {
+  // ...
+}
+```
+
+让Student类继承Person类
+
+```kotlin
+class Student : Person() {
+  var sno = ""
+  var grade = 0
+}
+```
+
+### 构造函数
+
+kotlin里的构造函数分为两种：主构造函数和次构造函数。
+
+主构造函数就是最常用的构造函数，每个类默认都有一个不带参数的主构造函数，当然也可以显示的给它指明参数。主构造函数没有函数体，直接定义在类名后面即可。
+
+```kotlin
+class Student(val sno: String, val grade: Int) : Person() {
+  
+}
+
+val student = Student("a123", 5)
+```
+
+由于主构造函数没有函数体，如果我们需要在主构造函数里写一些逻辑的话，需要使用`init`函数。
+
+```kotlin
+class Student(val sno: String, val grade: Int) : Person() {
+  init {
+    println("sno is " + sno)
+    println("grade is " + grade)
+  }
+}
+```
+
+根据继承特性的规定，子类的构造函数必须调用父类的构造函数，子类的主构造函数调用父类中的哪个构造函数，在继承的时候通过括号指定。
+
+次构造函数是通过constructor关键词定义，它是有函数体的。当一个类既有主构造函数又有次构造函数的时候，所有的次构造函数都必须调用主构造函数（包括间接调用）。
+
+```kotlin
+class Student(val sno: String, val grade: Int, name: String, age: Int) : Person(name, age) {
+  constructor(name: String, age: Int) : this("", 0, name, age){
+  }
+}
+```
+
+### 接口
+
+kotlin允许在接口中定义的函数里进行默认实现，jdk1.8之后也开始支持这个功能了。
+
+```kotlin
+interface Study {
+  fun readBooks()
+  
+  fun doHomeWork() {
+    println("do homework default")
+  }
+}
+
+class Student(name: String, age: Int): Person(name, age), Study {
+  override fun readBooks() {
+    println(name + " is reading.")
+  }
+}
+```
+
+### 数据类和单例类
+
 
 
 ## 基本类型

@@ -36,21 +36,6 @@ module.exports = {
         link: "/timeline/",
         icon: "reco-date"
       },
-      // {
-      //   "text": "Docs",
-      //   "icon": "reco-message",
-      //   "items": [
-      //     {
-      //       "text": "vuepress-reco",
-      //       "link": "/docs/theme-reco/"
-      //     }
-      //   ]
-      // },
-      // {
-      //   "text": "Github",
-      //   "icon": "reco-github",
-      //   "link": "https://github.com/kcqnly",
-      // },
       {
         text: "About",
         icon: "reco-account",
@@ -73,8 +58,14 @@ module.exports = {
         title: "Token团队",
         desc: "因理而生，为理而来",
         link: "https://itoken.team/",
-        logo: "/token.png"
+        logo: "/friendLink/token.png"
       },
+      {
+        title: "Vacabun",
+        desc: "研究生马硕士",
+        link: "https://blog.vacabun.ml/",
+        logo: "/friendLink/vacabun.png"
+      }
     ],
     logo: "/logo.png",
     search: true,
@@ -82,7 +73,6 @@ module.exports = {
     lastUpdated: "Last Updated",
     author: "kcqnly",
     authorAvatar: "/avatar.png",
-    // "record": "xxxx",
     startYear: "2019"
   },
   markdown: {

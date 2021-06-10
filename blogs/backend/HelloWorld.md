@@ -1,6 +1,6 @@
 ---
 title: Flask入门笔记
-date: '2019-08-08 08:00:00'
+date: 2019-08-08
 categories:
  - 后端
 tags:
