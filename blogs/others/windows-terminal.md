@@ -75,3 +75,121 @@ Set-PoshPrompt ys
     },
 }
 ```
+
+## 主题改造
+
+我使用的是ys主题，更多主题样式可以点击[这里](https://ohmyposh.dev/docs/themes/)查看。
+以下是我对ys主题的一些改造配置，如果您使用的不是ys主题，可以点击退出了。😜
+
+主题配置文件存放在`C:\Users\xxx\Documents\WindowsPowerShell\Modules\oh-my-posh\3.162.4\themes`下面。
+
+打开并修改`ys.omp.json`。
+
+为什么要修改？因为默认的ys配置会在文件夹里有python文件的情况下显示python的版本号，但是由于默认配置的display_version为false，所以你只会看到一对括号，然后什么都没有。此外，因为每次显示python版本都是另起一行，我个人不是很习惯这种方式。
+
+```json
+{
+  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "blocks": [
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "newline": true,
+      "segments": [
+        {
+          "type": "text",
+          "style": "plain",
+          "foreground": "lightBlue",
+          "properties": {
+            "prefix": "",
+            "text": "#"
+          }
+        },
+        {
+          "type": "root",
+          "style": "plain",
+          "foreground": "red",
+          "properties": {
+            "root_icon": "%"
+          }
+        },
+        {
+          "type": "session",
+          "style": "plain",
+          "properties": {
+            "user_info_separator": " <darkGray>@</> ",
+            "prefix": "",
+            "user_color": "cyan",
+            "host_color": "green"
+          }
+        },
+        {
+          "type": "path",
+          "style": "plain",
+          "foreground": "lightYellow",
+          "properties": {
+            "prefix": "<darkGray>in </>",
+            "style": "full"
+          }
+        },
+        {
+          "type": "git",
+          "style": "plain",
+          "properties": {
+            "prefix": "<darkGray>on</> <white>git:</>"
+          }
+        },
+        {
+          "type": "python",
+          "style": "plain",
+          "properties": {
+            "prefix": "<white>(",
+            "postfix": ")</>",
+            "display_version": true
+          }
+        },
+        {
+          "type": "time",
+          "style": "plain",
+          "foreground": "darkGray",
+          "properties": {
+            "prefix": "[",
+            "postfix": "]"
+          }
+        },
+        {
+          "type": "exit",
+          "style": "plain",
+          "foreground": "red",
+          "properties": {
+            "prefix": " C:",
+            "always_numeric": true
+          }
+        }
+      ]
+    },
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "newline": true,
+      "segments": [
+        {
+          "type": "text",
+          "style": "plain",
+          "foreground": "lightRed",
+          "properties": {
+            "prefix": "",
+            "text": "$",
+            "postfix": ""
+          }
+        }
+      ]
+    }
+  ],
+  "final_space": true
+}
+```
+
+不需要显示python版本的，可以直接把python那一项删掉。
+
+<img src="./img/winterminal.png" alt="效果图" style="zoom:60%;" />
