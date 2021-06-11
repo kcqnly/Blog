@@ -192,4 +192,4 @@ Set-PoshPrompt ys
 
 不需要显示python版本的，可以直接把python那一项删掉。
 
-<img src="./img/winterminal.png" alt="效果图" style="zoom:60%;" />
+![效果图](./img/winterminal.png)
