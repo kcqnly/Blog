@@ -216,6 +216,38 @@ class Student(name: String, age: Int): Person(name, age), Study {
 
 ### 数据类和单例类
 
+创建数据类
+
+```kotlin
+data class Cellphone(val brand: String, val price: Double)
+```
+
+添加`data`关键字之后，kotlin会根据主构造函数中的参数帮我们将`equals()`、`hashCode()`、`toString()`等固定方法自动生成。
+
+创建单例类
+
+```kotlin
+object Singleton {}
+```
+
+只需要把class关键字换成object就可以创建一个单例类
+
+### lambda编程
+
+初始化集合
+
+```kotlin
+val list = listOf("Apple", "Banana", "Orange")
+```
+
+`listOf()`函数创建的集合是不可变的，也就是它只能用于读取操作。如果想创建可变集合，可以使用`mutableListOf()`函数。set的基本使用和list相似。
+
+map的基本使用
+
+```kotlin
+val map = mapOf()
+```
+
 
 
 ## 基本类型
