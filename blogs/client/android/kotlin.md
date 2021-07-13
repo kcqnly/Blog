@@ -216,93 +216,75 @@ class Student(name: String, age: Int): Person(name, age), Study {
 
 ### 数据类和单例类
 
-
-
-## 基本类型
-
-### 数字
-
-| 类型     | 大小（比特数）| 最小值  |  最大值 |
-| ------- |:---:| ---------:|-----:|
-| Byte    | 8   | -128      | 127   |
-| Short   | 16  | -32768    | 32767 |
-| Int     | 32  | $-2^{31}$ |$2^{31}-1$ |
-| Long    | 64  |$-2^{63}$  |$2^{63}-1$ |
-
-所有以未超出 `Int` 最大值的整型值初始化的变量都会推断为 `Int` 类型。如果初始值超过了其最大值，那么推断为 `Long` 类型。 如需显式指定 `Long` 型值，请在该值后追加 `L` 后缀。
+创建数据类
 
 ```kotlin
-val one = 1 // Int
-val threeBillion = 3000000000 // Long
-val oneLong = 1L // Long
-val oneByte: Byte = 1
+data class Cellphone(val brand: String, val price: Double)
 ```
 
-对于浮点数，Kotlin 提供了 `Float` 与 `Double` 类型。
+添加`data`关键字之后，kotlin会根据主构造函数中的参数帮我们将`equals()`、`hashCode()`、`toString()`等固定方法自动生成。
 
-| 类型     | 比特数| 有效数字比特数  |  指数比特数 |十进制位数|
-| ------- |:----:| ---------:|-----:|-----:|
-| FLoat   | 32   | 24     | 8   | 6-7 |
-| Short   | 64   | 53    | 11 | 15-16 |
-
-对于以小数初始化的变量，编译器会推断为 `Double` 类型。 如需将一个值显式指定为 `Float` 类型，请添加 `f` 或 `F` 后缀。 如果这样的值包含多于 6～7 位十进制数，那么会将其舍入。
+创建单例类
 
 ```kotlin
-val pi = 3.14 // Double
-val e = 2.7182818284 // Double
-val eFloat = 2.7182818284f // Float，实际值为 2.7182817
+object Singleton {}
 ```
 
-### 位运算
+只需要把class关键字换成object就可以创建一个单例类
 
-对于位运算，没有特殊字符来表示，而只可用中缀方式调用具名函数，例如:
+### lambda编程
 
-```kotlin
-val x = (1 shl 2) and 0x000FF000
-```
-
-- shl(bits) – 有符号左移
-- shr(bits) – 有符号右移
-- ushr(bits) – 无符号右移
-- and(bits) – 位与
-- or(bits) – 位或
-- xor(bits) – 位异或
-- inv() – 位非
-
-### 区间检测
-
-区间实例以及区间检测：`a..b`、 `x in a..b`、 `x !in a..b`
-
-### 字符和字符串
-
-字符用 `Char` 类型表示。它们不能直接当作数字。
+初始化集合
 
 ```kotlin
-fun check(c: Char) {
-    if (c == 1) { // 错误：类型不兼容
-        // ……
-    }
+val list = listOf("Apple", "Banana", "Orange")
+for( fruit in list) {
+  println(fruit)
 }
 ```
 
-### 数组
+`listOf()`函数创建的集合是不可变的，也就是它只能用于读取操作。如果想创建可变集合，可以使用`mutableListOf()`函数。set的基本使用和list相似。
 
-数组在 Kotlin 中使用 `Array` 类来表示，它定义了 `get` 与 `set` 函数（按照运算符重载约定这会转变为 `[]`）以及 `size` 属性，以及一些其他有用的成员函数：
+map的基本使用
 
 ```kotlin
-class Array<T> private constructor() {
-    val size: Int
-    operator fun get(index: Int): T
-    operator fun set(index: Int, value: T): Unit
-
-    operator fun iterator(): Iterator<T>
-    // ……
+val map = mapOf("Apple" to 1, "Orange" to 2)
+for((fruit, number) in map) {
+  // ...
 }
 ```
 
-创建数组的方法：
+#### 集合的函数式API
 
 ```kotlin
-val array = arrayOf(1,2,3,4,5)
-val asc = Array(5){i-> i*i}
+val list = listOf("Apple", "orange", "Pear", "Grape")
+val maxLengthFruit = list.maxByOrNull { it.length }
+println(maxLengthFruit)
 ```
+
+lambda表达式结构
+
+> {参数名1: 参数类型, 参数名2: 参数类型 -> 函数体 }
+
+```kotlin
+val maxLengthFruit = list.maxBy({ fruit: String -> fruit.length })
+```
+
+然后Kotlin规定，当Lambda参数是函数的最后一个参数时，可以将Lambda表达式移到函数括 号的外面，如下所示:
+
+```kotlin
+val maxLengthFruit = list.maxBy() { fruit: String -> fruit.length }
+```
+
+接下来，如果Lambda参数是函数的唯一一个参数的话，还可以将函数的括号省略:
+
+```kotlin
+val maxLengthFruit = list.maxBy { fruit: String -> fruit.length }
+```
+
+当Lambda表达式的参数列表中只有一个参数时，也不必声明参数名，而是可以使用it 关键字来代替，那么代码就变成了:
+
+```kotlin
+val maxLengthFruit = list.maxBy { it.length }
+```
+
